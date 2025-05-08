@@ -1,5 +1,7 @@
+import Image from "next/image"
+
 const TrustedBy = () => {
-  const companies = ["Acme Inc.", "TechCorp", "Innovate Labs", "Future Systems", "Global Tech", "Nexus Group"]
+  const companies = ["aliada", "telcel", "microsoft", "homely", "liverpool", "devf"]
 
   return (
     <div className="container mx-auto max-w-5xl">
@@ -9,7 +11,7 @@ const TrustedBy = () => {
       <div className="flex flex-wrap justify-center gap-8">
         {companies.map((company, index) => (
           <div key={index} className="text-[#F0F0F0]/80 font-medium">
-            {company}
+            <Image src={`/${company}.svg`} width={100} height={20} alt={`${company} logo`} />
           </div>
         ))}
       </div>
