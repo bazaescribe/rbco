@@ -2,102 +2,49 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import LanguageSwitcher from "./language-switcher"
+import { Language } from "@/hooks/use-language"
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+interface NavbarProps {
+  language: Language
+  onLanguageChange: (lang: Language) => void
+}
+
+export default function Navbar({ language, onLanguageChange }: NavbarProps) {
+  const [scrollY, setScrollY] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      setScrollY(window.scrollY)
     }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Calculate blur intensity based on scroll
+  const blurIntensity = Math.min(scrollY / 100, 1) // Max blur at 100px scroll
+  const bgOpacity = Math.min(scrollY / 50, 0.95) // Max opacity at 50px scroll
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-[#000F0D]/90 backdrop-blur-md py-3" : "bg-transparent py-5"
-      }`}
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 px-8 py-6 transition-all duration-300"
+      style={{
+        backdropFilter: `blur(${blurIntensity * 20}px)`,
+        backgroundColor: `hsl(var(--background) / ${bgOpacity})`,
+        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%)',
+        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%)'
+      }}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold">
-            <Image src="/RBco.svg" width={75} height={24} alt="RB Consulting" />
-          </Link>
+      <div className="max-w-6xl mx-auto flex justify-between items-center">
+        {/* Logo */}
+        <Link href="/" className="font-heading text-xl tracking-wide text-foreground transition-colors duration-300">
+          RB Industries
+        </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#" className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors">
-              Servicios
-            </Link>
-            <Link href="#" className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors">
-              Casos de éxito
-            </Link>
-            <Link href="#" className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors">
-              Sobre nosotros
-            </Link>
-            <Link href="#" className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors">
-              Blog
-            </Link>
-            <Button className="bg-[#D4FF00] text-[#000F0D] hover:bg-[#D4FF00]/90">Contacto</Button>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden text-[#F0F0F0]" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        {/* Language Selector */}
+        <LanguageSwitcher language={language} onLanguageChange={onLanguageChange} />
       </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-[#000F0D] absolute top-full left-0 right-0 p-4">
-          <nav className="flex flex-col space-y-4">
-            <Link
-              href="#"
-              className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Servicios
-            </Link>
-            <Link
-              href="#"
-              className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Casos de éxito
-            </Link>
-            <Link
-              href="#"
-              className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Sobre nosotros
-            </Link>
-            <Link
-              href="#"
-              className="text-[#F0F0F0]/80 hover:text-[#D4FF00] transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Blog
-            </Link>
-            <Button
-              className="bg-[#D4FF00] text-[#000F0D] hover:bg-[#D4FF00]/90 w-full"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contacto
-            </Button>
-          </nav>
-        </div>
-      )}
-    </header>
+    </nav>
   )
 }
-
-export default Navbar
