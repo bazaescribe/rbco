@@ -37,7 +37,7 @@ function HomeContent() {
             </AnimatedText>
             <AnimatedText delay={600}>
               <Link 
-                href="https://wa.me/5255123456789" 
+                href="https://wa.me/5516777083" 
                 target="_blank"
                 className="inline-block px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:opacity-80"
               >
