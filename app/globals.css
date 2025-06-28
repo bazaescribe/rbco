@@ -152,8 +152,8 @@
 
   /* Selection styling */
   ::selection {
-    background: #FF2C55;
-    color: #FFFFFF;
+    background: #C7FF2C;
+    color: #000000;
   }
 
   /* Focus styles for accessibility */
