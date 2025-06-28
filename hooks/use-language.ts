@@ -22,8 +22,8 @@ export const useLanguage = () => {
   const content = {
     es: {
       hero: {
-        title: "Diseñamos y construimos\ntecnología útil para\nnegocios ambiciosos.",
-        subtitle: "Consultoría, desarrollo, producto. Siempre funcional. Siempre bien hecho.",
+        title: "Tecnología que rinde. Negocios que crecen.",
+        subtitle: "Consultoría, producto y desarrollo para equipos que no se detienen.",
         cta: "Contáctanos"
       },
       webDevelopment: {
@@ -47,8 +47,8 @@ export const useLanguage = () => {
     },
     en: {
       hero: {
-        title: "We design and build\nuseful technology for\nambitious businesses.",
-        subtitle: "Consulting, development, product. Always functional. Always well done.",
+        title: "Technology that performs. Business that grows.",
+        subtitle: "Consulting, product, and development for teams that don’t slow down.",
         cta: "Contact us"
       },
       webDevelopment: {

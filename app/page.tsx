@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Link from "next/link"
 import Navbar from "@/components/navbar"
 import AnimatedText from "@/components/animated-text"
 import { useLanguage } from "@/hooks/use-language"
 import { useSectionTheme } from "@/hooks/use-section-theme"
 
-export default function Home() {
+function HomeContent() {
   const { language, setLanguage, content } = useLanguage()
   const { currentTheme } = useSectionTheme()
   const [isLoaded, setIsLoaded] = useState(false)
@@ -133,5 +133,20 @@ export default function Home() {
         </div>
       </footer>
     </main>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-foreground mx-auto mb-4"></div>
+          <p className="text-sm opacity-60">Loading...</p>
+        </div>
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   )
 }

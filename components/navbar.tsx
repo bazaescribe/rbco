@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import LanguageSwitcher from "./language-switcher"
 import { Language } from "@/hooks/use-language"
+import Image from "next/image"
+import { useSectionTheme } from "@/hooks/use-section-theme"
 
 interface NavbarProps {
   language: Language
@@ -12,6 +14,7 @@ interface NavbarProps {
 
 export default function Navbar({ language, onLanguageChange }: NavbarProps) {
   const [scrollY, setScrollY] = useState(0)
+  const { currentTheme } = useSectionTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,21 +32,45 @@ export default function Navbar({ language, onLanguageChange }: NavbarProps) {
   return (
     <nav 
       className="fixed top-0 left-0 right-0 z-50 px-8 py-6 transition-all duration-300"
-      style={{
-        backdropFilter: `blur(${blurIntensity * 20}px)`,
-        backgroundColor: `hsl(var(--background) / ${bgOpacity})`,
-        maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%)',
-        WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 100%)'
-      }}
     >
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <Link href="/" className="font-heading text-xl tracking-wide text-foreground transition-colors duration-300">
-          RB Industries
-        </Link>
+      <Link href="/" className="relative w-[167px] h-[20px]">
+  {/* Backdrop blur solo en áreas transparentes */}
+  <div
+    className="absolute inset-0"
+    style={{
+      WebkitMaskImage: "url('/RBTechnologies.png')",
+      maskImage: "url('/RBTechnologies.png')",
+      WebkitMaskRepeat: "no-repeat",
+      maskRepeat: "no-repeat",
+      WebkitMaskSize: "contain",
+      maskSize: "contain",
+      WebkitMaskPosition: "center",
+      maskPosition: "center",
+      backdropFilter: "blur(80px)",
+      WebkitBackdropFilter: "blur(80px)",
+      pointerEvents: "none",
+    }}
+  />
 
-        {/* Language Selector */}
-        <LanguageSwitcher language={language} onLanguageChange={onLanguageChange} />
+  {/* Imagen visible del logo */}
+  <Image 
+    src="/RBTechnologiesTrans.png" 
+    width={167} 
+    height={20} 
+    alt="RB Technologies"
+    className="relative z-10"
+    style={{
+      mixBlendMode: currentTheme === 'dark' ? 'difference' : 'normal',
+      filter: currentTheme === 'dark' ? 'invert(1)' : 'none',
+    }} 
+  />
+</Link>
+
+        <LanguageSwitcher
+          language={language}
+          onLanguageChange={onLanguageChange}
+        />
       </div>
     </nav>
   )
