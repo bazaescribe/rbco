@@ -39,7 +39,7 @@ function HomeContent() {
               <Link 
                 href="https://wa.me/5516777083" 
                 target="_blank"
-                className="inline-block px-8 py-4 bg-foreground text-background font-medium tracking-wide transition-all duration-300 hover:opacity-80"
+                className="inline-block px-8 py-3 bg-foreground text-background font-medium rounded-2xl tracking-wide transition-all duration-300 hover:opacity-80"
               >
                 {content.hero.cta}
               </Link>
