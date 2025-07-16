@@ -39,8 +39,8 @@ export default function Navbar({ language, onLanguageChange }: NavbarProps) {
   <div
     className="absolute inset-0"
     style={{
-      WebkitMaskImage: "url('/RBTechnologies.png')",
-      maskImage: "url('/RBTechnologies.png')",
+      WebkitMaskImage: "url('/logo.png')",
+      maskImage: "url('/logo.png')",
       WebkitMaskRepeat: "no-repeat",
       maskRepeat: "no-repeat",
       WebkitMaskSize: "contain",
@@ -55,8 +55,8 @@ export default function Navbar({ language, onLanguageChange }: NavbarProps) {
 
   {/* Imagen visible del logo */}
   <Image 
-    src="/RBTechnologiesTrans.png" 
-    width={167} 
+    src="/logo.png" 
+    width={164} 
     height={20} 
     alt="RB Technologies"
     className="relative z-10"

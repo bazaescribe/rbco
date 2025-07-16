@@ -94,6 +94,29 @@ function HomeContent() {
         </div>
       </section>
 
+      {/* Cloud & Infra Section */}
+      <section className="min-h-screen flex items-center px-8 py-24">
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="max-w-4xl">
+            <AnimatedText className="mb-12">
+              <h2 className="editorial-title whitespace-pre-line">
+                {content.cloudInfra.title}
+              </h2>
+            </AnimatedText>
+            <AnimatedText className="mb-16" delay={200}>
+              <p className="editorial-text font-light leading-relaxed">
+                {content.cloudInfra.description}
+              </p>
+            </AnimatedText>
+            <AnimatedText delay={400}>
+              <p className="text-sm opacity-60 italic">
+                "{content.cloudInfra.testimonial}"
+              </p>
+            </AnimatedText>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="min-h-screen flex items-center px-8 py-24">
         <div className="max-w-4xl mx-auto">

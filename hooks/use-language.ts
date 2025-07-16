@@ -36,6 +36,11 @@ export const useLanguage = () => {
         description: "Diseñamos, validamos y construimos productos digitales desde cero. UX, estrategia y ejecución.",
         testimonial: "De idea a producto en el mercado en 90 días."
       },
+      cloudInfra: {
+        title: "Cloud & Infraestructura",
+        description: "Implementamos, optimizamos y gestionamos infraestructura en la nube para escalar tu negocio de forma segura y eficiente. AWS, Azure, GCP y más.",
+        testimonial: "Nuestra migración a la nube fue impecable y sin interrupciones."
+      },
       about: {
         title: "Quiénes somos",
         description: "RB Industries es una firma tecnológica boutique. Creamos herramientas digitales con intención, estética y precisión. No hacemos relleno. Hacemos lo que funciona."
@@ -60,6 +65,11 @@ export const useLanguage = () => {
         title: "Product & Labs",
         description: "We design, validate and build digital products from scratch. UX, strategy and execution.",
         testimonial: "From idea to market product in 90 days."
+      },
+      cloudInfra: {
+        title: "Cloud & Infra",
+        description: "We implement, optimize, and manage cloud infrastructure to help your business scale securely and efficiently. AWS, Azure, GCP and more.",
+        testimonial: "Our cloud migration was seamless and disruption-free."
       },
       about: {
         title: "Who we are",
